@@ -147,5 +147,35 @@ namespace Assignment2_19
             return "NO";
 
         }
+        // Complete the missingNumbers function below.
+        static int[] missingNumbers(int[] arr, int[] brr)
+        {
+            return new int[] { };
+        }
+
+
+        // Complete the gradingStudents function below.
+        static int[] gradingStudents(int[] grades)
+        {
+            return new int[] { };
+        }
+
+        // Complete the findMedian function below.
+        static int findMedian(int[] arr)
+        {
+            return 0;
+        }
+
+        // Complete the closestNumbers function below.
+        static int[] closestNumbers(int[] arr)
+        {
+            return new int[] { };
+        }
+
+        // Complete the dayOfProgrammer function below.
+        static string dayOfProgrammer(int year)
+        {
+            return "";
+        }
     }
 }
