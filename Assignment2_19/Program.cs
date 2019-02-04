@@ -89,7 +89,7 @@ namespace Assignment2_19
             }
             catch
             {
-                Console.WriteLine("Exception occured while computing Rotleft()");
+                Console.WriteLine("Exception occured while computing rotleft()");
             }
             return b;
 
@@ -112,7 +112,7 @@ namespace Assignment2_19
             }
             catch
             {
-                Console.WriteLine("Exception occured while computing MaximumToys()");
+                Console.WriteLine("Exception occured while computing maximumToys()");
             }
             return num;
 
@@ -141,7 +141,7 @@ namespace Assignment2_19
             }
             catch
             {
-                Console.WriteLine("Exception occured while computing BalancedSum()");
+                Console.WriteLine("Exception occured while computing balancedSum()");
             }
 
             return "NO";
