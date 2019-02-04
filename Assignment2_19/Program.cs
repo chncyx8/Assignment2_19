@@ -11,19 +11,19 @@ namespace Assignment2_19
             Console.WriteLine("Left Rotation");
             int d = 4;
             int[] a = { 1, 2, 3, 4, 5 };
-            int[] r = RotLeft(a, d);
+            int[] r = rotLeft(a, d);
             displayArray(r);
 
             // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
             int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
-            Console.WriteLine(MaximumToys(prices, k));
+            Console.WriteLine(maximumToys(prices, k));
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
             List<int> arr = new List<int> { 1, 2, 3 };
-            Console.WriteLine(BalancedSums(arr));
+            Console.WriteLine(balancedSums(arr));
 
             // Missing numbers
             Console.WriteLine("\n\nMissing numbers");
@@ -65,7 +65,7 @@ namespace Assignment2_19
                 Console.Write(n + " ");
             }
         }
-        static int[] RotLeft(int[] a, int d)
+        static int[] rotLeft(int[] a, int d)
         {
             int[] b = new int[a.Length];
             try
@@ -94,7 +94,7 @@ namespace Assignment2_19
             return b;
 
         }
-        static int MaximumToys(int[] prices, int k)
+        static int maximumToys(int[] prices, int k)
         {
             int num = 0;
             int total = 0;
@@ -117,7 +117,7 @@ namespace Assignment2_19
             return num;
 
         }
-        static String BalancedSums(List<int> arr)
+        static String balancedSums(List<int> arr)
         {
             try
             {
