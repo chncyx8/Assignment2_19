@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment2_19
 {
@@ -6,7 +7,145 @@ namespace Assignment2_19
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // left rotation
+            Console.WriteLine("Left Rotation");
+            int d = 4;
+            int[] a = { 1, 2, 3, 4, 5 };
+            int[] r = RotLeft(a, d);
+            displayArray(r);
+
+            // Maximum toys
+            Console.WriteLine("\n\nMaximum toys");
+            int k = 50;
+            int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
+            Console.WriteLine(MaximumToys(prices, k));
+
+            // Balanced sums
+            Console.WriteLine("\n\nBalanced sums");
+            List<int> arr = new List<int> { 1, 2, 3 };
+            Console.WriteLine(BalancedSums(arr));
+
+            // Missing numbers
+            Console.WriteLine("\n\nMissing numbers");
+            int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
+            int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
+            int[] r2 = missingNumbers(arr1, brr);
+            displayArray(r2);
+
+            // grading students
+            Console.WriteLine("\n\nGrading students");
+            int[] grades = { 73, 67, 38, 33 };
+            int[] r3 = gradingStudents(grades);
+            displayArray(r3);
+
+            // find the median
+            Console.WriteLine("\n\nFind the median");
+            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
+            Console.WriteLine(findMedian(arr2));
+
+            // closest numbers
+            Console.WriteLine("\n\nClosest numbers");
+            int[] arr3 = { 5, 4, 3, 2 };
+            int[] r4 = closestNumbers(arr3);
+            displayArray(r4);
+
+            // Day of programmer
+            Console.WriteLine("\n\nDay of Programmer");
+            int year = 2017;
+            Console.WriteLine(dayOfProgrammer(year));
+
+            Console.WriteLine("Press any key to exit..");
+            Console.ReadKey(true);
+        }
+        static void displayArray(int[] arr)
+        {
+            Console.WriteLine();
+            foreach (int n in arr)
+            {
+                Console.Write(n + " ");
+            }
+        }
+        static int[] RotLeft(int[] a, int d)
+        {
+            int[] b = new int[a.Length];
+            try
+            {               
+                int index;
+                int length = a.Length;
+                int place;
+                for (int i = 0; i < length; i++)
+                {
+                    index = i - d;
+                    place = length + index;
+                    if (index >= 0)
+                    {
+                        b[index] = a[i];
+                    }
+                    else
+                    {
+                        b[place] = a[i];
+                    }
+                }                
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing Rotleft()");
+            }
+            return b;
+
+        }
+        static int MaximumToys(int[] prices, int k)
+        {
+            int num = 0;
+            int total = 0;
+            try
+            {               
+                Array.Sort(prices);
+                foreach (int i in prices)
+                {
+                    total += i;
+                    if (total < k)
+                        num++;
+                    else
+                        break;
+                }               
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing MaximumToys()");
+            }
+            return num;
+
+        }
+        static String BalancedSums(List<int> arr)
+        {
+            try
+            {
+                int j = arr.Count - 1;
+                int i = 0, suml = 0, sumr = 0;
+                while (i < arr.Count && j >= 0)
+                {
+                    if (suml == sumr && ((i - j) == 0))
+                    {
+                        return "YES";
+                    }
+                    else if (suml < sumr)
+                    {
+                        suml += arr[i++];
+                    }
+                    else
+                    {
+                        sumr += arr[j--];
+                    }
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing BalancedSum()");
+            }
+
+            return "NO";
+
         }
     }
 }
