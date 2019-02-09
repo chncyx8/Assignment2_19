@@ -206,15 +206,107 @@ namespace Assignment2_19
 
 
         // Complete the gradingStudents function below.
-        static int[] gradingStudents(int[] grades)
+         static int[] gradingStudents(int[] grades)
         {
-            return new int[] { };
+            int[] r3 = new int[grades.Length];
+            for (int i = 0; i < grades.Length; i++)
+            {
+                if (grades[i] % 5 > 2 && !(grades[i] < 38))
+                {
+                    r3[i] = grades[i] + (5 - grades[i] % 5);
+
+                }
+                else
+                {
+                    r3[i] = grades[i];
+                    
+                }
+                
+            }
+            
+            return r3;
+            
         }
 
         // Complete the findMedian function below.
+        static int partition(int[] arr, int low, int high)
+        {
+            int pivot = arr[low];
+            int i = low, pivotIndex = low, j = high, ctr = 0, temp=0;
+
+            while (i <= j)
+            {
+                if (arr[i] < pivot)
+                {
+                    temp = arr[i];
+                    arr[i] = arr[pivotIndex];
+                    arr[pivotIndex] = temp;
+                    pivotIndex++; i++;
+                }
+                else if (arr[i] > pivot)
+                {
+                    temp = arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                    j--;
+
+                }
+                if (arr[i] == pivot)
+                {
+                    i++; ctr++;
+                }
+            }
+
+            return pivotIndex;
+        }
+        /*static int selection_algorithm(int[] arr, int left, int right, int kth)
+        {
+            for (; ; )
+            {
+                int pivotIndex = partition(arr, left, right);
+                int len = pivotIndex - left + 1;
+
+                if (kth == len)
+                    return arr[pivotIndex];
+
+                else if (kth < len)
+                    right = pivotIndex - 1;
+
+                else
+                {
+                    kth = kth - len;
+                    left = pivotIndex + 1;
+                }
+                
+            }
+
+        }*/
+        
         static int findMedian(int[] arr)
         {
-            return 0;
+            int n = arr.Length, left = 0, right = n-1;
+            int kth = n/2 + 1;
+
+            for (; ; )
+            {
+                int pivotIndex = partition(arr, left, right);
+                int len = pivotIndex - left + 1;
+
+                if (kth == len)
+                    return arr[pivotIndex];
+
+                else if (kth < len)
+                    right = pivotIndex - 1;
+
+                else
+                {
+                    kth = kth - len;
+                    left = pivotIndex + 1;
+                }
+                
+            }
+
+            //return selection_algorithm(arr, 0, n - 1, n / 2 + 1);
         }
 
         // Complete the closestNumbers function below.
