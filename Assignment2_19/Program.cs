@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment2_19
 {
@@ -57,14 +58,23 @@ namespace Assignment2_19
             Console.WriteLine("Press any key to exit..");
             Console.ReadKey(true);
         }
+
         static void displayArray(int[] arr)
         {
-            Console.WriteLine();
-            foreach (int n in arr)
+            try
             {
-                Console.Write(n + " ");
+                Console.WriteLine();
+                foreach (int n in arr)
+                {
+                    Console.Write(n + " ");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured. Please try again with valid inputs.");
             }
         }
+
         static int[] rotLeft(int[] a, int d)
         {
             int[] b = new int[a.Length];
@@ -100,7 +110,7 @@ namespace Assignment2_19
             int total = 0;
             try
             {               
-                Array.Sort(prices);
+                prices = SelectionSort(prices);
                 foreach (int i in prices)
                 {
                     total += i;
@@ -150,7 +160,48 @@ namespace Assignment2_19
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
-            return new int[] { };
+            {
+                int min = brr[0], max = brr[0], diff = 100;
+                int[] crr = new int[1];
+
+                var listA = new List<int>(arr);
+                var listB = new List<int>(brr);
+
+                foreach (int i in brr)
+                {
+                    if (i > max)
+                    {
+                        max = i;
+                    }
+                    if (i < min)
+                    {
+                        min = i;
+                    }
+                }
+
+                diff = max - min;
+
+                if (diff <= 100)
+                {
+
+                    for (int i = 0; i < listA.Count; i++)
+                    {
+                        if (listB.Remove(listA[i]))
+                        {
+                            listA.RemoveAt(i--);
+                        }
+                    }
+                    crr = listB.Distinct().ToArray();
+                    crr = SelectionSort(crr);
+                    //}
+                    return crr;
+                }
+                else
+                {
+                    Console.WriteLine("The difference between max and min elements of original array is greater than 100");
+                    return null;
+                }
+            }
         }
 
 
@@ -171,7 +222,7 @@ namespace Assignment2_19
         {            
             int diff = int.MaxValue;
             List<int> b = new List<int>();
-            Array.Sort(arr);
+            arr = SelectionSort(arr);
             for (int i = 1; i < arr.Length; i++)
             {
                 if (Math.Abs(arr[i] - arr[i - 1]) < diff)
@@ -191,7 +242,89 @@ namespace Assignment2_19
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
-            return "";
+            bool isLeap = false;
+            string date;
+            double month = 0;
+            int day = 0, days = 0;
+            int[] monthsLeap = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int[] months = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+            if (year == 1918)
+            {
+                month = Math.Ceiling((double)(256) / (double)(30));
+
+                for (int i = 0; i < month - 1; i++)
+                {
+                    days += months[i];
+                }
+
+                day = 256 - days + 13;
+            }
+            else
+            {
+                if ((year > 1699) && (year < 1918))
+                {
+                    if ((year % 4) == 0)
+                    {
+                        isLeap = true;
+                    }
+                }
+                else if ((year > 1918) && (year < 2701))
+                {
+                    if (((year % 400) == 0) || (((year % 4) == 0) && ((year % 100) != 0)))
+                    {
+                        isLeap = true;
+                    }
+                }
+                else
+                {
+                    return "Invalid year entered. Please enter year between 1700 and 2700.";
+                }
+                if (isLeap)
+                {
+                    month = Math.Ceiling((double)(256) / (double)(30));
+                    for (int i = 0; i < month - 1; i++)
+                    {
+                        days += monthsLeap[i];
+                    }
+                    day = 256 - days;
+                }
+                else
+                {
+                    month = Math.Ceiling((double)(256) / (double)(30));
+                    for (int i = 0; i < month - 1; i++)
+                    {
+                        days += months[i];
+                    }
+                    day = 256 - days;
+                }
+            }
+
+            date = Convert.ToString(day) + ".0" + Convert.ToString(month) + "." + Convert.ToString(year);
+            return date;
+        }
+        static int[] SelectionSort(int[] arr2)
+        {
+            int min, temp;
+
+            for (int i = 0; i < arr2.Length - 1; i++)
+            {
+                min = i;
+                for (int j = i + 1; j < arr2.Length; j++)
+                {
+                    if (arr2[j] < arr2[min])
+                    {
+                        min = j;
+                    }
+                }
+                if (min != i)
+                {
+                    temp = arr2[i];
+                    arr2[i] = arr2[min];
+                    arr2[min] = temp;
+                }
+            }
+            return arr2;
         }
     }
 }
