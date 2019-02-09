@@ -168,8 +168,24 @@ namespace Assignment2_19
 
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
-        {
-            return new int[] { };
+        {            
+            int diff = int.MaxValue;
+            List<int> b = new List<int>();
+            Array.Sort(arr);
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (Math.Abs(arr[i] - arr[i - 1]) < diff)
+                {
+                    b.Clear();
+                    diff = Math.Abs(arr[i] - arr[i - 1]);
+                }
+                if (Math.Abs(arr[i] - arr[i - 1]) == diff)
+                {
+                    b.Add(arr[i - 1]);
+                    b.Add(arr[i]);
+                }
+            }
+            return b.ToArray();
         }
 
         // Complete the dayOfProgrammer function below.
