@@ -56,7 +56,7 @@ namespace Assignment2_19
             Console.WriteLine(dayOfProgrammer(year));
 
             Console.WriteLine("Press any key to exit..");
-            Console.ReadKey(true);
+            Console.ReadKey(true);          
         }
 
         static void displayArray(int[] arr)
@@ -75,42 +75,44 @@ namespace Assignment2_19
             }
         }
 
+        // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
-            int[] b = new int[a.Length];
-            try
-            {               
+                int[] b = new int[a.Length];                         
                 int index;
                 int length = a.Length;
                 int place;
-                for (int i = 0; i < length; i++)
+                if (d >= 0 && d <= length)
                 {
-                    index = i - d;
-                    place = length + index;
-                    if (index >= 0)
+                    for (int i = 0; i < length; i++)
                     {
-                        b[index] = a[i];
+                        index = i - d;
+                        place = length + index;
+                        if (index >= 0)
+                        {
+                            b[index] = a[i];
+                        }
+                        else
+                        {
+                            b[place] = a[i];
+                        }
                     }
-                    else
-                    {
-                        b[place] = a[i];
-                    }
-                }                
-            }
-            catch
-            {
-                Console.WriteLine("Exception occured while computing rotleft()");
-            }
-            return b;
-
+                    return b;
+                }
+                else
+                {
+                   return null;               
+                }                                
         }
+
+        // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
             int num = 0;
-            int total = 0;
-            try
-            {               
-                prices = SelectionSort(prices);
+            int total = 0;                       
+            prices = SelectionSort(prices);
+            if (k >= 0)
+            {
                 foreach (int i in prices)
                 {
                     total += i;
@@ -118,19 +120,19 @@ namespace Assignment2_19
                         num++;
                     else
                         break;
-                }               
+                }
+                return num;
             }
-            catch
-            {
-                Console.WriteLine("Exception occured while computing maximumToys()");
+            else
+            {               
+                Console.WriteLine("Exception occured. Please try again with valid inputs.");
+                return 0;
             }
-            return num;
-
         }
+
+        // Complete the balancedSums function below.
         static String balancedSums(List<int> arr)
-        {
-            try
-            {
+        {            
                 int j = arr.Count - 1;
                 int i = 0, suml = 0, sumr = 0;
                 while (i < arr.Count && j >= 0)
@@ -147,16 +149,10 @@ namespace Assignment2_19
                     {
                         sumr += arr[j--];
                     }
-                }
-            }
-            catch
-            {
-                Console.WriteLine("Exception occured while computing balancedSum()");
-            }
-
-            return "NO";
-
+                }            
+                return "NO";
         }
+
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
