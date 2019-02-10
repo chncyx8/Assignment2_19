@@ -56,7 +56,18 @@ namespace Assignment2_19
             Console.WriteLine(dayOfProgrammer(year));
 
             Console.WriteLine("Press any key to exit..");
-            Console.ReadKey(true);          
+            Console.ReadKey(true);
+
+            /*
+             * Self-reflection-Yuxuan Cen: From this assignment, I started to realize
+             * that there are many ways to solve a computational problem, each way may
+             * lead to a completly different efficiency. When dealing with large amount
+             * of data, efficiency becomes extremely importan. Because of that,  we 
+             * should keep thinking and try our best to figure out better solutions when
+             * solving computational problems.
+             * 
+             * 
+            */
         }
 
         static void displayArray(int[] arr)
@@ -82,22 +93,22 @@ namespace Assignment2_19
                 int index;
                 int length = a.Length;
                 int place;
-                if (d >= 0 && d <= length)
+                if (d >= 0 && d <= length)  // d should not lower than 0 and greater than the length of the array.
                 {
-                    for (int i = 0; i < length; i++)
+                    for (int i = 0; i < length; i++) // Use for loop to loop through the array.
                     {
-                        index = i - d;
-                        place = length + index;
+                        index = i - d;  
+                        place = length + index; // Use place and index to locate the elements.
                         if (index >= 0)
                         {
-                            b[index] = a[i];
-                        }
+                            b[index] = a[i]; // Replace the index element by the current element.
+                    }
                         else
                         {
-                            b[place] = a[i];
-                        }
+                            b[place] = a[i]; // Replace the place element by the current element.
                     }
-                    return b;
+                    }
+                    return b; // Return the new array.
                 }
                 else
                 {
@@ -110,18 +121,18 @@ namespace Assignment2_19
         {
             int num = 0;
             int total = 0;                       
-            prices = SelectionSort(prices);
-            if (k >= 0)
+            prices = SelectionSort(prices);  // Call the SelectionSort method to sort the array.
+            if (k >= 0) // k must greater or equal to 0.
             {
-                foreach (int i in prices)
+                foreach (int i in prices)  //Loop through the elements in the array.
                 {
-                    total += i;
-                    if (total < k)
+                    total += i; // Add up the elements in the sorted array.
+                    if (total <= k) // The total amount in the array must lower than k.
                         num++;
                     else
                         break;
                 }
-                return num;
+                return num; // Return the maximum toys.
             }
             else
             {               
@@ -134,23 +145,23 @@ namespace Assignment2_19
         static String balancedSums(List<int> arr)
         {            
                 int j = arr.Count - 1;
-                int i = 0, suml = 0, sumr = 0;
+                int i = 0, suml = 0, sumr = 0;  // Define the sum of the left side and the sum of the right side.
                 while (i < arr.Count && j >= 0)
                 {
-                    if (suml == sumr && ((i - j) == 0))
+                    if (suml == sumr && ((i - j) == 0)) // If the sum of left side and the sum of the right side, return YES.
                     {
-                        return "YES";
+                        return "YES"; 
                     }
-                    else if (suml < sumr)
+                    else if (suml < sumr) // If the sum of left side is smaller than the sum of the right side.
+                {
+                        suml += arr[i++]; // Add more elements on the left side. 
+                }
+                    else // If the sum of right side is smaller than the sum of the left side.
                     {
-                        suml += arr[i++];
-                    }
-                    else
-                    {
-                        sumr += arr[j--];
-                    }
+                        sumr += arr[j--]; // Add more elements on the right side. 
+                }
                 }            
-                return "NO";
+                return "NO";  // Else, return NO.
         }
 
         // Complete the missingNumbers function below.
@@ -308,23 +319,22 @@ namespace Assignment2_19
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {            
-            int diff = int.MaxValue;
-            List<int> b = new List<int>();
-            arr = SelectionSort(arr);
-            for (int i = 1; i < arr.Length; i++)
+            int diff = int.MaxValue; // Define the diff value.
+            List<int> b = new List<int>(); // Use List to solve this problem.
+            arr = SelectionSort(arr); // First sort the array using SelectionSort method.
+            for (int i = 1; i < arr.Length; i++)  // loop through the elements in the array.
             {
-                if (Math.Abs(arr[i] - arr[i - 1]) < diff)
-                {
-                    b.Clear();
-                    diff = Math.Abs(arr[i] - arr[i - 1]);
+                if (Math.Abs(arr[i] - arr[i - 1]) < diff) // If the difference between two adjacent numbers is lower than diff.
+                {                   
+                    diff = Math.Abs(arr[i] - arr[i - 1]); // The diff should equal to the difference between two adjacent values.
                 }
-                if (Math.Abs(arr[i] - arr[i - 1]) == diff)
+                if (Math.Abs(arr[i] - arr[i - 1]) == diff) // If the difference between two adjacent values is equal to diff.
                 {
-                    b.Add(arr[i - 1]);
+                    b.Add(arr[i - 1]); // Add the adjacent values to List b.
                     b.Add(arr[i]);
                 }
             }
-            return b.ToArray();
+            return b.ToArray(); // Return the new array.
         }
 
         // Complete the dayOfProgrammer function below.
