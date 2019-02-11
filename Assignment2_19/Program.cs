@@ -75,6 +75,14 @@ namespace Assignment2_19
              * It would be more fun to deal with different and distinct libraries in 
              * upcoming assignments.
             */
+
+            /*
+             * Karan Gupta: This assignment was an advanced version of the previous one 
+             * and it required a lot of brain storming. A lot of different cases were tested 
+             * for each question. I felt that question 7th was the most difficult one out of all.
+             * Now, having completed this assignment i feel more confident in programming with C#.
+            */
+
         } //end of Main method
 
         static void displayArray(int[] arr)
