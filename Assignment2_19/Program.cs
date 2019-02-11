@@ -277,7 +277,8 @@ namespace Assignment2_19
             for (int i = 1; i < arr.Length; i++)  // loop through the elements in the array.
             {
                 if (Math.Abs(arr[i] - arr[i - 1]) < diff) // If the difference between two adjacent numbers is lower than diff.
-                {                   
+                {
+                    b.Clear();
                     diff = Math.Abs(arr[i] - arr[i - 1]); // The diff should equal to the difference between two adjacent values.
                 }
                 if (Math.Abs(arr[i] - arr[i - 1]) == diff) // If the difference between two adjacent values is equal to diff.
