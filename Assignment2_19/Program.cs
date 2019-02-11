@@ -150,25 +150,26 @@ namespace Assignment2_19
 
         // Complete the balancedSums function below.
         static String balancedSums(List<int> arr)
-        {            
-                int j = arr.Count - 1;
-                int i = 0, suml = 0, sumr = 0;  // Define the sum of the left side and the sum of the right side.
-                while (i < arr.Count && j >= 0)
+        {
+            int sum = 0;
+            int lsum = 0; // Sum of elements on left side.
+            int n = arr.Count;
+            for (int i = 0; i < n; i++) // Use for loop to sum up the values in the array.
+            {
+                sum = sum + arr[i];
+            }
+            int rsum = sum; // Use the sum valus as the sum of elements on right side.
+            for (int i = 0; i < n; i++)
+            {
+                rsum = rsum - arr[i]; // Calculate the sum of the elements on right side.
+                if (rsum == lsum) // If the sum of left side and the sum of the right side, return YES.
                 {
-                    if (suml == sumr && ((i - j) == 0)) // If the sum of left side and the sum of the right side, return YES.
-                    {
-                        return "YES"; 
-                    }
-                    else if (suml < sumr) // If the sum of left side is smaller than the sum of the right side.
-                {
-                        suml += arr[i++]; // Add more elements on the left side. 
+                    return "YES";
                 }
-                    else // If the sum of right side is smaller than the sum of the left side.
-                    {
-                        sumr += arr[j--]; // Add more elements on the right side. 
-                }
-                }            
-                return "NO";  // Else, return NO.
+                lsum = lsum + arr[i]; // Calculate the sum of the elements on left side.
+            }
+
+            return "NO"; // Else, return NO.
         } //end of method: balancedSums
 
         // Complete the missingNumbers function below.
